@@ -1,11 +1,18 @@
 apiVersion: apps/v1
-kind: Pod
+kind: ReplicaSet
 metadata:
-  name: my-pod
+  name: my-rs
   labels:
-    type: web
     customer: govanin
 spec:
-  containers:
-   - name: nginx
-     image: nginx
+  template:
+    metadata:
+      name: my-pod
+      labels:
+        type: web
+        customer: govanin
+    spec:
+      containers:
+       - name: nginx
+         image: nginx
+  replicas: 3
